@@ -1,0 +1,52 @@
+/* ==========================================================
+   ANIMACIONES — aparición al hacer scroll y movimiento reducido
+   La clase .js-ready la agrega animations.js; sin JavaScript
+   el contenido se muestra siempre.
+   ========================================================== */
+.js-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.js-ready [data-reveal="left"] {
+  transform: translateX(-24px);
+}
+
+.js-ready [data-reveal="right"] {
+  transform: translateX(24px);
+}
+
+.js-ready [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.anim-flotar {
+  animation: flotar 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .js-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}

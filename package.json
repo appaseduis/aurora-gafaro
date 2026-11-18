@@ -1,0 +1,13 @@
+{
+  "name": "aurora-gafaro-web",
+  "version": "1.0.0",
+  "description": "Sitio web estático de Aurora Inés Gáfaro Rojas - Propuesta Rectoral 2026-2030",
+  "private": true,
+  "scripts": {
+    "dev": "live-server --port=5500 --open=index.html",
+    "local": "live-server --port=5500 --open=index.html"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

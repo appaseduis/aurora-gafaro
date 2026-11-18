@@ -1,0 +1,92 @@
+/* ==========================================================
+   RESPONSIVE — estrategia mobile-first (min-width)
+   ========================================================== */
+
+/* Móviles pequeños: ocultar el cargo junto a la marca */
+@media (max-width: 379px) {
+  .brand__role {
+    display: none;
+  }
+}
+
+/* Tablets */
+@media (min-width: 640px) {
+  .site-footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Escritorio: navegación horizontal */
+@media (min-width: 1024px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .site-nav {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-5);
+    padding: 0;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .site-nav__list {
+    flex-direction: row;
+    gap: var(--space-1);
+  }
+
+  .site-nav__link {
+    position: relative;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--color-texto);
+    border-bottom: none;
+  }
+
+  .site-nav__link::after {
+    content: "";
+    position: absolute;
+    left: var(--space-3);
+    right: var(--space-3);
+    bottom: 2px;
+    height: 2px;
+    background: var(--color-naranja);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-normal);
+  }
+
+  .site-nav__link:hover {
+    color: var(--color-azul-brillante);
+  }
+
+  .site-nav__link:hover::after,
+  .site-nav__link[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+
+  .site-nav__link[aria-current="page"] {
+    color: var(--color-azul-profundo);
+  }
+
+  .site-nav__cta {
+    margin-top: 0;
+    align-self: center;
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+
+/* Pantallas grandes */
+@media (min-width: 1440px) {
+  :root {
+    --container-width: 1280px;
+  }
+}

@@ -1,0 +1,358 @@
+/* ==========================================================
+   COMPONENTES COMPARTIDOS — header, navegación, footer
+   (mobile-first; ajustes de escritorio en responsive.css)
+   ========================================================== */
+
+/* ---------- Header ---------- */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-header);
+  height: var(--header-height);
+  border-bottom: 1px solid transparent;
+  transition: box-shadow var(--transition-normal),
+    border-color var(--transition-normal),
+    height var(--transition-normal);
+}
+
+/* El desenfoque va en un pseudo-elemento: si estuviera en el header,
+   el panel móvil (position: fixed) quedaría confinado a su altura. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-blanco-80);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.site-header.is-scrolled {
+  border-color: var(--color-gris-claro);
+  box-shadow: var(--shadow-soft);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: var(--space-4);
+}
+
+/* Identificación tipográfica (sin logotipo institucional) */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--color-azul-profundo);
+}
+
+.brand:hover {
+  color: var(--color-azul-profundo);
+}
+
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-small);
+  background: var(--color-azul-profundo);
+  color: var(--color-blanco);
+  font-family: var(--font-secundaria);
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  position: relative;
+  overflow: hidden;
+}
+
+.brand__mark::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  width: 18px;
+  height: 18px;
+  background: var(--color-naranja);
+  transform: rotate(45deg);
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.brand__name {
+  font-family: var(--font-secundaria);
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.brand__role {
+  margin-top: 2px;
+  font-family: var(--font-secundaria);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-azul-brillante);
+}
+
+/* ---------- Botón de menú móvil ---------- */
+.nav-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 48px;
+  height: 48px;
+  padding: 0 12px;
+  border: 1px solid var(--color-gris-claro);
+  border-radius: var(--radius-small);
+  background: var(--color-blanco);
+  position: relative;
+  z-index: var(--z-menu);
+}
+
+.nav-toggle__bar {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--color-azul-profundo);
+  border-radius: 2px;
+  transition: transform var(--transition-normal), opacity var(--transition-fast);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- Navegación (panel móvil por defecto) ---------- */
+.site-nav {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-menu) - 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--header-height) + var(--space-5)) var(--container-padding) var(--space-7);
+  background: var(--color-azul-profundo);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition: opacity var(--transition-normal),
+    transform var(--transition-normal),
+    visibility var(--transition-normal);
+}
+
+.site-nav.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.site-nav__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.site-nav__link {
+  display: block;
+  padding: var(--space-3) 0;
+  font-family: var(--font-secundaria);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--color-blanco-80);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-blanco-15);
+}
+
+.site-nav__link:hover,
+.site-nav__link[aria-current="page"] {
+  color: var(--color-amarillo);
+}
+
+.site-nav__cta {
+  margin-top: var(--space-6);
+  align-self: flex-start;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--color-azul-profundo);
+  color: var(--color-blanco-80);
+  padding-block: var(--space-8) var(--space-6);
+  position: relative;
+  overflow: hidden;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg,
+      var(--color-azul-brillante) 0 70%,
+      var(--color-naranja) 70% 88%,
+      var(--color-amarillo) 88% 100%);
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.site-footer__name {
+  font-family: var(--font-secundaria);
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  color: var(--color-blanco);
+  margin-bottom: var(--space-2);
+}
+
+.site-footer__tagline {
+  max-width: 420px;
+  font-size: var(--fs-sm);
+}
+
+.site-footer__title {
+  font-family: var(--font-secundaria);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-amarillo);
+  margin-bottom: var(--space-4);
+}
+
+.site-footer__links {
+  list-style: none;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.site-footer__links a {
+  color: var(--color-blanco-80);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+}
+
+.site-footer__links a:hover {
+  color: var(--color-blanco);
+  text-decoration: underline;
+}
+
+.site-footer__bottom {
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-blanco-15);
+  font-size: var(--fs-xs);
+  color: var(--color-blanco-60);
+}
+
+.site-footer__bottom p {
+  margin: 0;
+}
+
+/* ---------- Botón volver arriba ---------- */
+.back-to-top {
+  position: fixed;
+  right: var(--space-5);
+  bottom: var(--space-5);
+  z-index: var(--z-top);
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-azul-brillante);
+  color: var(--color-blanco);
+  box-shadow: var(--shadow-medium);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity var(--transition-normal),
+    transform var(--transition-normal),
+    visibility var(--transition-normal),
+    background-color var(--transition-fast);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.back-to-top:hover {
+  background: var(--color-azul-electrico);
+}
+
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---------- Botón destacado de la navegación: Propuesta rectoral ---------- */
+.btn--nav {
+  gap: var(--space-3);
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5) var(--space-2) var(--space-4);
+  background: var(--color-azul-profundo);
+  color: var(--color-blanco);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 6px 18px rgba(18, 49, 143, 0.22);
+}
+
+.btn--nav:hover {
+  background: var(--color-azul-brillante);
+  color: var(--color-blanco);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(16, 89, 222, 0.28);
+}
+
+/* Punto naranja con halo: acento cálido discreto */
+.btn--nav__dot {
+  position: relative;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-naranja);
+  box-shadow: 0 0 0 4px rgba(245, 138, 8, 0.25);
+}
+
+.site-nav__cta[aria-current="page"] {
+  background: var(--color-azul-brillante);
+}
+
+.site-nav__cta[aria-current="page"] .btn--nav__dot {
+  background: var(--color-amarillo);
+}
+
+/* En el menú móvil (fondo azul) el botón se invierte */
+@media (max-width: 1023px) {
+  .btn--nav {
+    background: var(--color-blanco);
+    color: var(--color-azul-profundo);
+    box-shadow: none;
+  }
+
+  .btn--nav:hover,
+  .site-nav__cta[aria-current="page"] {
+    background: var(--color-amarillo);
+    color: var(--color-azul-profundo);
+  }
+}
