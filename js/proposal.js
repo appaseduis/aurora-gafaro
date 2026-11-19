@@ -116,10 +116,6 @@
     '<section class="prop-section" id="cierre" aria-labelledby="h-cierre">' +
       '<h2 id="h-cierre" class="sr-only">Mensaje de cierre</h2>' +
       '<div class="cierre"><p>' + esc(P.cierre) + '</p><p>Con gratitud y compromiso,</p><strong>AURORA INÉS GÁFARO ROJAS</strong></div>' +
-      '<div class="btn-group section-foot">' +
-        '<a class="btn btn--primary" href="../assets/documents/Propuesta_Rectoria_Aurora_Gafaro_2026-2030.pdf" target="_blank" rel="noopener">Ver documento completo (PDF)</a>' +
-        '<a class="btn btn--outline" href="../assets/documents/Propuesta_Rectoria_Aurora_Gafaro_2026-2030.pdf" download>Descargar propuesta</a>' +
-      '</div>' +
     '</section>';
 
   root.innerHTML = presentacion + componentes + multicampus + datos + pilares + cierre;

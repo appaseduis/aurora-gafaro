@@ -7,14 +7,14 @@ Sitio estático (HTML5, CSS3 y JavaScript Vanilla) con la trayectoria académica
 ```
 index.html            Página principal
 404.html              Página de error (Vercel la usa automáticamente)
-pages/                trayectoria, formacion, investigacion, propuesta, documentos
+pages/                trayectoria, formacion, investigacion, propuesta
 css/                  variables · styles · components · pages · animations · responsive
 js/data.js            TODO el contenido (trayectoria, formación, publicaciones, propuesta)
 js/main.js            Renderizado de contenido, pestañas, filtros, contadores, footer
 js/navigation.js      Menú responsive y página activa
 js/proposal.js        Página de propuesta: pilares, acordeones, índice, barra de lectura
 js/animations.js      Aparición al hacer scroll (IntersectionObserver)
-assets/               imágenes y documentos
+assets/               imágenes
 ```
 
 ## Editar contenido
